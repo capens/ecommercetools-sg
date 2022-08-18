@@ -48,7 +48,7 @@ def _get_site_results(url: str):
 
     try:
         query = urllib.parse.quote_plus(url)
-        response = _get_source("https://www.google.co.uk/search?q=site%3A" + query)
+        response = _get_source("https://www.google.com.sg/search?q=site%3A" + query)
 
         return response
     except requests.exceptions.RequestException as e:
@@ -127,12 +127,12 @@ def _get_results(query: str):
     """
 
     query = urllib.parse.quote_plus(query)
-    response = _get_source("https://www.google.co.uk/search?q=" + query)
+    response = _get_source("https://www.google.com.sg/search?q=" + query + "&gl=sg&num=100")
 
     return response
 
 
-def _get_next_page(response, domain="google.co.uk"):
+def _get_next_page(response, domain="google.com.sg"):
     """Get the URL for the next page of results."""
 
     css_identifier_next = "#pnnext"
@@ -209,14 +209,14 @@ def _parse_search_results(response):
 def get_serps(query: str,
               output="dataframe",
               pages=1,
-              domain="google.co.uk"):
+              domain="google.com.sg"):
     """Return the Google search results for a given query.
 
     Args:
         query (string): Query term to search Google for.
         output (string, optional): Optional output format (dataframe or dictionary).
         pages (int, optional): Optional number of pages to return.
-        domain (string, optional): Optional Google domain (default is google.co.uk).
+        domain (string, optional): Optional Google domain (default is google.com.sg).
 
     Returns:
         results (dict): Results of query.
